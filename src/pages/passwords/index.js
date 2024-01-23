@@ -53,11 +53,9 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     content: {
-        flex: 1,
         padding: 20
     },
     list: {
-        flex: 1,
         paddingTop: 20
     },
 })

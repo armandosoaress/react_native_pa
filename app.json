@@ -2,7 +2,7 @@
   "expo": {
     "name": "my-app",
     "slug": "my-app",
-    "version": "1.0.0",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,13 +18,20 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 6,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.armando312.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5f7473fa-0d3e-43b0-9361-f1a0ee91d948"
+      }
     }
   }
 }

@@ -1,11 +1,12 @@
 
 import { StyleSheet, Text, View, Image, TouchableOpacity, Modal } from 'react-native';
-import Slider from '@react-native-community/slider';
 import { useState } from 'react';
 import { ModalPassword } from '../../components/modal/index';
+import { RangeInput } from './components/rangeInput';
 
-export  function Home() {
-  const [size, setSize] = useState(10);
+
+export function Home() {
+  const [size, setSize] = useState(5);
   const [password, setPassword] = useState('');
   const [ModalVisible, setModalVisible] = useState(false);
 
@@ -30,24 +31,15 @@ export  function Home() {
       />
       <Text style={styles.text}> {size} Caracteres</Text>
 
-      <View style={styles.area}>
-        <Slider
-          style={styles.slider}
-          minimumValue={0}
-          maximumValue={20}
-          minimumTrackTintColor="blue"
-          maximumTrackTintColor="red"
-          thumbTintColor="yellow"
-          value={size}
-          onValueChange={(valor) => setSize(valor.toFixed(0))}
-        />
+      <View>
+        <RangeInput value={size} onChange={(valorSelecionado) => setSize(valorSelecionado)} />
       </View>
 
       <TouchableOpacity style={styles.button} onPress={() => generatePass(size)}>
         <Text style={styles.buttonText}>Gerar senha</Text>
       </TouchableOpacity>
       <Modal animationType="fade" transparent={true} visible={ModalVisible}>
-        <ModalPassword  password={password}  handleeModal={() => setModalVisible(false)} />
+        <ModalPassword password={password} handleeModal={() => setModalVisible(false)} />
       </Modal>
 
     </View>
@@ -69,9 +61,6 @@ const styles = StyleSheet.create({
     marginTop: 14,
     marginBottom: 14,
     backgroundColor: '#fff',
-  },
-  slider: {
-    height: 50,
   },
   text: {
     fontSize: 20,
