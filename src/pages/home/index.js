@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { ModalPassword } from '../../components/modal/index';
 import { RangeInput } from './components/rangeInput';
 
-
 export function Home() {
   const [size, setSize] = useState(5);
   const [password, setPassword] = useState('');
