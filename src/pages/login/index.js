@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import useStoragelogin from '../../hooks/useStoragelogin';
 import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 export function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { getItem, saveItem } = useStoragelogin();
   const navigation = useNavigation(); // Obter o objeto de navegação
+  const MySwal = withReactContent(Swal)
 
   const checkLogin = async () => {
     const userData = await getItem('@userData');
@@ -25,7 +27,12 @@ export function Login({ onLogin }) {
   const handleLogin = async () => {
 
     if (!username || !password) {
-      alert('Preencha todos os campos');
+      MySwal.fire({
+        title: <p>Preencha todos os campos</p>,
+        icon: 'warning',
+        position: 'top-end',
+        confirmButtonText: 'Continuar',
+      });
       return;
     }
 
@@ -37,7 +44,12 @@ export function Login({ onLogin }) {
     const passwordBD = '2';
 
     if (username !== usernameBD || password !== passwordBD) {
-      alert('Usuário ou senha inválidos');
+      MySwal.fire({
+        title: <p>Usuário ou senha inválidos</p>,
+        icon: 'error',
+        position: 'top-end',
+        confirmButtonText: 'Continuar',
+      });
     } else {
       onLogin();
       saveItem('@userData', {
@@ -83,46 +95,44 @@ export function Login({ onLogin }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#121212',
+    backgroundColor: '#fff',
+    padding: 20,
     flex: 1,
+    paddingTop: '180px',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
-    color: '#FFFFFF',
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 32,
+    marginBottom: 30,
   },
   input: {
-    backgroundColor: '#323232',
-    borderRadius: 8,
-    color: '#FFFFFF',
-    fontSize: 16,
-    height: 48,
-    marginBottom: 16,
-    paddingHorizontal: 16,
-    width: 300,
+    width: '100%',
+    height: 50,
+    backgroundColor: '#F2F2F2',
+    borderRadius: 10,
+    paddingLeft: 20,
+    marginBottom: 20,
   },
   loginButton: {
-    alignItems: 'center',
-    backgroundColor: '#04D361',
-    borderRadius: 8,
-    height: 48,
+    width: '100%',
+    height: 50,
+    backgroundColor: '#FFCE00',
+    borderRadius: 10,
     justifyContent: 'center',
-    width: 300,
+    alignItems: 'center',
+    marginTop: 20,
   },
   buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   forgotPassword: {
-    marginTop: 16,
+    marginTop: 20,
   },
   forgotPasswordText: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#FFCE00',
   },
 });
