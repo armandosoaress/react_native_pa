@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 export function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [biometria, setbiometria] = useState('false');
   const { getItem, saveItem } = useStoragelogin();
   const MySwal = withReactContent(Swal)
 
@@ -64,6 +65,7 @@ export function Login({ onLogin }) {
   const biometrics = async () => {
     const compatible = await LocalAuthentication.hasHardwareAsync();
     if (compatible) {
+      setbiometria('true');
       const biometricRecords = await LocalAuthentication.isEnrolledAsync();
       if (!biometricRecords) {
         MySwal.fire({
@@ -112,11 +114,14 @@ export function Login({ onLogin }) {
         <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
       </TouchableOpacity>
 
-
       <View style={styles.biometrics}>
-        <TouchableOpacity onPress={biometrics}>
-          <Ionicons name="finger-print" size={54} color="black" />
-        </TouchableOpacity>
+        {biometria === 'true' ? (
+          <TouchableOpacity onPress={biometrics}>
+            <Ionicons name="finger-print" size={50} color="black" />
+          </TouchableOpacity>
+        ) : (
+          <Text></Text>
+        )}
       </View>
 
     </View>
