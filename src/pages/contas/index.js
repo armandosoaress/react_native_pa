@@ -1,24 +1,31 @@
-import { View, Text, StyleSheet, TouchableOpacity, Modal, Pressable, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Importando useNavigation
 
+export function Contas() {
+    const navigation = useNavigation(); // Obtendo a instância de navegação
 
-export function Passwords() {
-    const navigation = useNavigation();
     return (
-        <View style={styles.header}>
+        <View style={styles.container}>
             <Text style={styles.title}>
-                Segunda pagina
+                Página de contas
             </Text>
-            {/* botao para ir para o inicio */}
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Contas')}>
-                <Text style={styles.buttonText}>Voltar</Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('Contas1')}>
+                <Text style={styles.buttonText}>Contas 1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('Contas2')}>
+                <Text style={styles.buttonText}>Contas 2</Text>
             </TouchableOpacity>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    header: {
+    container: {
         flex: 1,
         backgroundColor: '#f3f3ff',
         justifyContent: 'center',
@@ -53,4 +60,4 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#fff',
     },
-})
+});

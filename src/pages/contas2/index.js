@@ -1,24 +1,19 @@
-import { View, Text, StyleSheet, TouchableOpacity, Modal, Pressable, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
+import { StyleSheet, Text, View } from 'react-native';
 
-export function Passwords() {
-    const navigation = useNavigation();
+export function Contas2() {
+
     return (
-        <View style={styles.header}>
+        <View style={styles.container}>
             <Text style={styles.title}>
-                Segunda pagina
+                Pagina de contas 2
             </Text>
-            {/* botao para ir para o inicio */}
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Contas')}>
-                <Text style={styles.buttonText}>Voltar</Text>
-            </TouchableOpacity>
         </View>
-    )
-}
 
+    );
+}
 const styles = StyleSheet.create({
-    header: {
+    container: {
         flex: 1,
         backgroundColor: '#f3f3ff',
         justifyContent: 'center',
@@ -51,6 +46,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
-        color: '#fff',
     },
-})
+});
+
+
+
