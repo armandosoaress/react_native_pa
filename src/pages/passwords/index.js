@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet, TouchableOpacity, Modal, Pressable, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-
 export function Passwords() {
+
     const navigation = useNavigation();
+
     return (
         <View style={styles.header}>
             <Text style={styles.title}>
                 Segunda pagina
             </Text>
-            {/* botao para ir para o inicio */}
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Contas')}>
-                <Text style={styles.buttonText}>Voltar</Text>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Inicio')}>
+                <Text style={styles.buttonText}>Voltar para inicio</Text>
             </TouchableOpacity>
         </View>
     )

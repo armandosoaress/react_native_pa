@@ -1,13 +1,20 @@
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Importando useNavigation
 
-import { StyleSheet, Text, View } from 'react-native';
 
-export function Contas2() {
-
+export function Perfil() {
+    const navigation = useNavigation(); // Obtendo a instância de navegação
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
-                Pagina de contas 2
+                Página de perfil
             </Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('Senha')}>
+                <Text style={styles.buttonText}>Senha</Text>
+            </TouchableOpacity>
         </View>
 
     );
@@ -46,6 +53,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
+        color: '#fff',
     },
 });
 

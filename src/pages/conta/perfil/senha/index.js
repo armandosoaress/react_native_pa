@@ -1,12 +1,12 @@
 
 import { StyleSheet, Text, View } from 'react-native';
 
-export function Contas1() {
+export function Senha() {
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
-                Pagina de contas 1
+                Página de Senha
             </Text>
         </View>
 
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
+        color: '#fff',
     },
 });
 

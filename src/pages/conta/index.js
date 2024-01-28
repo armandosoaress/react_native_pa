@@ -2,28 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Importando useNavigation
 
-export function Contas() {
+
+export function Conta() {
     const navigation = useNavigation(); // Obtendo a instância de navegação
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
-                Página de contas
+                Minha Conta
             </Text>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('Contas1')}>
-                <Text style={styles.buttonText}>Contas 1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('Contas2')}>
-                <Text style={styles.buttonText}>Contas 2</Text>
+                onPress={() => navigation.navigate('Perfil')}>
+                <Text style={styles.buttonText}>Perfil</Text>
             </TouchableOpacity>
         </View>
+
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -61,3 +57,6 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
 });
+
+
+

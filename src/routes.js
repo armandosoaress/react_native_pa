@@ -5,10 +5,9 @@ import { Home } from "./pages/home";
 import { Passwords } from "./pages/passwords";
 import { Login } from "./pages/login";
 import { Ionicons } from "@expo/vector-icons";
-import { Person } from "./pages/person";
-import { Contas } from "./pages/contas";
-import { Contas1 } from "./pages/contas1";
-import { Contas2 } from "./pages/contas2";
+import { Conta } from "./pages/conta";
+import { Senha } from "./pages/conta/perfil/senha";
+import { Perfil } from "./pages/conta/perfil";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -50,28 +49,13 @@ export function Routes() {
                 }}
             />
             <Tab.Screen
-                name="Perfil"
-                options={{
-                    headerShown: false,
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <Ionicons
-                            name={focused ? "person" : "person-outline"}
-                            size={size}
-                            color={color}
-                        />
-                    ),
-                }}>
-                {() => <Person onLogout={() => setUserLoggedIn(false)} />}
-            </Tab.Screen>
-
-            <Tab.Screen
-                name="maincontas"
+                name="Conta"
                 component={ContasStackScreen}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ focused, color, size }) => (
                         <Ionicons
-                            name={focused ? "key" : "key-outline"}
+                            name={focused ? "key" : "person-outline"}
                             size={size}
                             color={color}
                         />
@@ -85,9 +69,18 @@ export function Routes() {
 function ContasStackScreen() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Contas" component={Contas} />
-            <Stack.Screen name="Contas1" component={Contas1} />
-            <Stack.Screen name="Contas2" component={Contas2} />
+            <Stack.Screen name="Conta" component={Conta} />
+            <Stack.Screen name="Perfil" component={ContaperfilStackScreen} options={{ headerShown: false }} />
+        </Stack.Navigator>
+    );
+}
+
+function ContaperfilStackScreen() {
+    return (
+        <Stack.Navigator>
+            {/* ocultar */}
+            <Stack.Screen name="Perfil" component={Perfil} />
+            <Stack.Screen name="Senha" component={Senha} />
         </Stack.Navigator>
     );
 }
