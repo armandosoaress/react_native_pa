@@ -1,22 +1,20 @@
 
 import { StyleSheet, Text, View, Image, TouchableOpacity, Modal } from 'react-native';
-import { useState } from 'react';
 import useStoragelogin from '../../hooks/useStoragelogin';
 
 
-
-export function Person() {
+export function Person({ onLogout }) {
     const { removeItem } = useStoragelogin();
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Perfil</Text>{/* links da img https://media.licdn.com/dms/image/D4D03AQFFkkv_9Ib4Pw/profile-displayphoto-shrink_400_400/0/1675859871811?e=1711584000&v=beta&t=kk_zxRJCLaCBJ10GaAJdbPgC2-xKk_eqKzumIe_45kU */}
+            <Text style={styles.title}>Perfil</Text>
             <Image
                 source={require('../../assets/profile.jpg')}
                 style={styles.profile}
             />
             <TouchableOpacity style={styles.button} onPress={() => {
                 removeItem('@userData');
-                navigation.navigate('Login');
+                onLogout();
             }}>
                 <Text style={styles.buttonText}>Sair</Text>
             </TouchableOpacity>

@@ -47,7 +47,6 @@ export function Routes() {
             />
             <Tab.Screen
                 name="Perfil"
-                component={Person}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ focused, color, size }) => (
@@ -57,8 +56,9 @@ export function Routes() {
                             color={color}
                         />
                     ),
-                }}
-            />
+                }}>
+                {() => <Person onLogout={() => setUserLoggedIn(false)} />}
+            </Tab.Screen>
         </Tab.Navigator>
     );
 }

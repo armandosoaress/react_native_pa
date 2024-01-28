@@ -56,7 +56,6 @@ export function Login({ onLogin }) {
         username: username,
         password: password
       });
-      navigation.navigate('Inicio');
     }
   }
 
