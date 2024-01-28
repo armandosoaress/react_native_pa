@@ -1,10 +1,11 @@
 
 import { StyleSheet, Text, View, Image, TouchableOpacity, Modal } from 'react-native';
 import useStoragelogin from '../../hooks/useStoragelogin';
-
+import { useNavigation } from '@react-navigation/native';
 
 export function Person({ onLogout }) {
     const { removeItem } = useStoragelogin();
+    const navigation = useNavigation(); // Obter o objeto de navegação
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Perfil</Text>
@@ -17,6 +18,11 @@ export function Person({ onLogout }) {
                 onLogout();
             }}>
                 <Text style={styles.buttonText}>Sair</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => {
+                navigation.navigate('Inicio');
+            }}>
+                <Text style={styles.buttonText}>Voltar</Text>
             </TouchableOpacity>
         </View>
     );

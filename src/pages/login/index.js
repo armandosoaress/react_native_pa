@@ -59,7 +59,6 @@ export function Login({ onLogin }) {
     }
   }
 
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 20,
     flex: 1,
-    paddingTop: '180px',
+    paddingTop: 180,
     alignItems: 'center',
   },
   title: {
