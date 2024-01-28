@@ -5,12 +5,13 @@ import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import * as LocalAuthentication from 'expo-local-authentication';
+import { Ionicons } from '@expo/vector-icons';
 
 export function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { getItem, saveItem } = useStoragelogin();
-  const navigation = useNavigation(); // Obter o objeto de navegação
   const MySwal = withReactContent(Swal)
 
   const checkLogin = async () => {
@@ -59,6 +60,29 @@ export function Login({ onLogin }) {
     }
   }
 
+  // funçao da biometria
+  const biometrics = async () => {
+    const compatible = await LocalAuthentication.hasHardwareAsync();
+    if (compatible) {
+      const biometricRecords = await LocalAuthentication.isEnrolledAsync();
+      if (!biometricRecords) {
+        MySwal.fire({
+          title: <p>Não há biometria cadastrada</p>,
+          icon: 'warning',
+          position: 'top-end',
+          confirmButtonText: 'Continuar',
+        });
+        return;
+      }
+      const result = await LocalAuthentication.authenticateAsync({
+        promptMessage: 'Faça Login para continuar'
+      });
+      if (result.success) {
+        onLogin();
+      }
+    }
+  }
+  biometrics();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -87,6 +111,14 @@ export function Login({ onLogin }) {
       <TouchableOpacity style={styles.forgotPassword} onPress={() => console.log('Esqueci minha senha')}>
         <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
       </TouchableOpacity>
+
+
+      <View style={styles.biometrics}>
+        <TouchableOpacity onPress={biometrics}>
+          <Ionicons name="finger-print" size={54} color="black" />
+        </TouchableOpacity>
+      </View>
+
     </View>
   );
 }
@@ -133,4 +165,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFCE00',
   },
+  biometrics: {
+    width: '100%',
+    height: 80,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });

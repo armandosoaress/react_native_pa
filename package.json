@@ -25,7 +25,8 @@
     "react-native-screens": "~3.29.0",
     "react-native-web": "~0.19.6",
     "sweetalert2": "^11.10.4",
-    "sweetalert2-react-content": "^5.0.7"
+    "sweetalert2-react-content": "^5.0.7",
+    "expo-local-authentication": "~13.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
