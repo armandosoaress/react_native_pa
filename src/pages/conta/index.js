@@ -13,7 +13,7 @@ export function Conta() {
             </Text>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('Perfil')}>
+                onPress={() => navigation.navigate('MainPerfil')}>
                 <Text style={styles.buttonText}>Perfil</Text>
             </TouchableOpacity>
         </View>

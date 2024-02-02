@@ -62,29 +62,29 @@ export function Login({ onLogin }) {
   }
 
   // funçao da biometria
-  const biometrics = async () => {
-    const compatible = await LocalAuthentication.hasHardwareAsync();
-    if (compatible) {
-      setbiometria('true');
-      const biometricRecords = await LocalAuthentication.isEnrolledAsync();
-      if (!biometricRecords) {
-        MySwal.fire({
-          title: <p>Não há biometria cadastrada</p>,
-          icon: 'warning',
-          position: 'top-end',
-          confirmButtonText: 'Continuar',
-        });
-        return;
-      }
-      const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'Faça Login para continuar'
-      });
-      if (result.success) {
-        onLogin();
-      }
-    }
-  }
-  biometrics();
+  // const biometrics = async () => {
+  //   const compatible = await LocalAuthentication.hasHardwareAsync();
+  //   if (compatible) {
+  //     setbiometria('true');
+  //     const biometricRecords = await LocalAuthentication.isEnrolledAsync();
+  //     if (!biometricRecords) {
+  //       MySwal.fire({
+  //         title: <p>Não há biometria cadastrada</p>,
+  //         icon: 'warning',
+  //         position: 'top-end',
+  //         confirmButtonText: 'Continuar',
+  //       });
+  //       return;
+  //     }
+  //     const result = await LocalAuthentication.authenticateAsync({
+  //       promptMessage: 'Faça Login para continuar'
+  //     });
+  //     if (result.success) {
+  //       onLogin();
+  //     }
+  //   }
+  // }
+  // biometrics();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -114,7 +114,7 @@ export function Login({ onLogin }) {
         <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
       </TouchableOpacity>
 
-      <View style={styles.biometrics}>
+      {/* <View style={styles.biometrics}>
         {biometria === 'true' ? (
           <TouchableOpacity onPress={biometrics}>
             <Ionicons name="finger-print" size={50} color="black" />
@@ -122,7 +122,7 @@ export function Login({ onLogin }) {
         ) : (
           <Text></Text>
         )}
-      </View>
+      </View> */}
 
     </View>
   );
@@ -170,11 +170,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFCE00',
   },
-  biometrics: {
-    width: '100%',
-    height: 80,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+  // biometrics: {
+  //   width: '100%',
+  //   height: 80,
+  //   borderRadius: 10,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // }
 });

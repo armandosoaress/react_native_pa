@@ -49,10 +49,11 @@ export function Routes() {
                 }}
             />
             <Tab.Screen
-                name="Conta"
+                name="MainConta"
                 component={ContasStackScreen}
                 options={{
                     headerShown: false,
+                    tabBarLabel: "Conta",
                     tabBarIcon: ({ focused, color, size }) => (
                         <Ionicons
                             name={focused ? "key" : "person-outline"}
@@ -70,7 +71,7 @@ function ContasStackScreen() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Conta" component={Conta} />
-            <Stack.Screen name="Perfil" component={ContaperfilStackScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="MainPerfil" component={ContaperfilStackScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
     );
 }
@@ -78,7 +79,6 @@ function ContasStackScreen() {
 function ContaperfilStackScreen() {
     return (
         <Stack.Navigator>
-            {/* ocultar */}
             <Stack.Screen name="Perfil" component={Perfil} />
             <Stack.Screen name="Senha" component={Senha} />
         </Stack.Navigator>
